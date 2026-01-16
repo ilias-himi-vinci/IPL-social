@@ -1,19 +1,16 @@
 name: CI Pipeline
-
-on:
-  push:
-  pull_request:
+on: [push, pull_request]
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - run: npm install
-      - run: npm test
+      
+uses: actions/checkout@v3
+name: Use Node.js
+    uses: actions/setup-node@v3
+    with:
+      node-version: '20'
+run: npm install
+name: Run tests
+run: npm test
